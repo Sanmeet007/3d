@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title>Bounce 3D</title>
+  <link rel="shortcut icon" href="cube.svg" type="image/x-icon" />
+  <style type="text/css" media="all">
+   :root{
+     --cubeBackground: rgba(0,0,255,0.5);
+     --body: #444;
+     --rotateSpeed: 10s;
+     --bounceSpeed: 2s;
+   }
+   
+    body {
+      background: var(--body);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height:100vh;
+      margin:0px;
+      width:100%;
+      perspective: 10em;
+      perspective-origin: 50% calc(50% - 5em);
+      overflow:hidden;
+  
+    }
+    
+    html{
+      overflow: hidden;
+    }
+    .scene{
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateScene var(--rotateSpeed) infinite linear;
+    }
+    .mat {
+       position: absolute;
+       background: #111;
+       background-image: repeating-conic-gradient(from 45deg  ,#111 0deg 90deg , #222 90deg 180deg);
+       height: 16em;
+       width: 16em;
+       background-size: 2em 2em;
+       transform: translate(-50% , -50%) rotateX(90deg);
+    }
+    .ball{
+      width: 1em;
+      height:1em;
+      background-color: rgb(65,65,103);
+      border-radius: 50%;
+      position:absolute;
+      left: -0.5em;
+      bottom: 3em;
+      background-image: radial-gradient(  circle at top ,     
+    rgba(146,146,190,1) , 
+    rgba(0,0,0, 0.8)
+      );
+     animation:
+       rotateScene var(--rotateSpeed) infinite linear reverse,
+       ballBounce var(--bounceSpeed) infinite  ease-out;
+    }
+    
+    .cube{
+      height: 3em;
+      width: 3em;
+      bottom: 0em;
+      left:-1.5em;
+      position: absolute;
+      animation: cubeHeight var(--bounceSpeed) infinite linear;
+    }
+    @keyframes  cubeHeight {
+   0% , 100%{
+     height: 2em;
+   }
+   20% , 89%{
+     height: 3em;
+   }
+ }
+  
+    .front , .back , .left  , .right{
+      position: absolute;
+      width:100%;
+      height:100%;
+      background:  var(--cubeBackground);
+    }
+    .front{
+      transform: translateZ(1.5em);
+    }
+    .right{
+      transform: rotateY(90deg) translateZ(1.5em) ;
+    }
+    .left{
+      transform: rotateY(270deg) translateZ(1.5em) ;
+    }
+     .back{
+      transform: rotateY(180deg) translateZ(1.5em) ;
+   
+    }    
+     .top{
+      width: 3em;
+      height: 3em;
+      position: absolute;
+      background: var(--cubeBackground);
+      transform: translateY(-50%)  rotateX(90deg) ;
+    }   
+      .bottom{
+       height: 3em;
+       width: 3em;
+       position: absolute;
+       bottom: 0em;
+       left:-1.5em;
+       background: var(--cubeBackground);
+       transform: translateY(50%) rotateX(90deg);
+    }   
+   
+    .cube > div{
+     box-shadow: 0 0 0.1em 0 #eaeaea inset;
+    }
+    .ballShadow{
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(
+      rgba(0,0,0 , 0.6),
+       transparent 85%
+      );
+      animation: ballShadow var(--bounceSpeed) infinite linear;
+    }
+     
+    @keyframes rotateScene {
+      0%{
+        transform: rotateY(360deg);
+      }
+    }
+     @keyframes ballBounce {
+      0% , 100%{
+          bottom: 2em;
+       }
+         
+      50%{
+         bottom: 4.5em;
+         animation-timing-function: ease-in;
+       }
+     }
+     
+     
+     @keyframes ballShadow{
+       0% , 100%{
+          opacity: 1;
+          transform: scale(0.5);
+       }
+       50%{
+        opacity:;
+          transform: scale(1);
+          opacity:0.5;
+       }
+     }
+     @media screen and (max-width:799px){
+       body{
+         font-size:40px;
+       }
+     }
+     @media screen and (min-width:800px){
+       body{
+       font-size: 55px;
+       }
+     }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="mat"></div>
+    <div class="bottom"></div>
+    <div class="cube">
+      <div class="front"></div>
+      <div class="back"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="top">
+        <div class="ballShadow"></div>
+      </div>
+    </div>
+    <div class="ball"></div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+  
+  </script>
+</body>
+</html>
