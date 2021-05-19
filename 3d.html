@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title> 3d </title>
+ 
+  <style type="text/css" media="all">
+
+
+:root {
+    --box: rgb(37,123,85);
+    --boxSpeed: 5s;
+    --body:rgb(9,9,9);
+    --shadow: 1px 1px 4px 0 rgba(141,240,175,0.2) inset;
+    --b-left: rgb(41,61,48);
+    --b-right: rgb(41,61,48);
+    --b-front: rgb(41,61,48);
+    --b-back: rgb(41,61,48) ;
+    --b-top:  rgb(41,61,48);
+    --b-bottom: rgb(41,61,48) ;
+  }
+  
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      outline: none;
+      font-family: var(--font);
+      color: var(--text);
+    }
+    html {
+      overflow: hidden;
+    }
+    body {
+      background: var(--body);
+      font-size: 5em;
+      -webkit-perspective: 500px;
+      perspective: 500px;
+      display: -ms-grid;
+      display: grid;
+      place-content: center;
+      height: 100vh;
+      -webkit-perspective-origin: 50% 30%;
+      perspective-origin: 50% 30%;
+      overflow: hidden;
+    }
+@-webkit-keyframes rotate {
+      0% {
+        -webkit-transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+        transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+      }
+    }
+@keyframes rotate {
+      0% {
+        -webkit-transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+        transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+        animation-timing-function: ease;
+      }
+    }
+    .scene {
+      position: relative;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-animation: rotate var(--boxSpeed)linear infinite;
+      animation: rotate var(--boxSpeed) ease-in infinite;
+    }
+    .mat {
+      height: 10em;
+      width: 10em;
+      background-size: 2em  2em;
+      -webkit-transform: translate(-50% , -50%) rotateX(90deg);
+      transform: translate(-50% , -50%) rotateX(90deg);
+      position: absolute;
+      opacity: 0.8;
+    }
+    .object {
+      height: 2em;
+      width: 2em;
+      position: absolute;
+      top: -1em;
+      left: -1em;
+
+    }
+    .ball {
+      background: rgba(237,70,70);
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      top: -3em;
+      left: -0.5em;
+      border-radius: 50%;
+      animation: rotate 10s  infinitelinear reverse;
+    }
+    .object >  div {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-box-shadow: var(--shadow);
+      box-shadow: var(--shadow);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+    .left {
+      -webkit-transform: rotateY(90deg) translateZ(-1em);
+      transform: rotateY(90deg) translateZ(-1em);
+      background: var(--b-left);
+    }
+    .front {
+      -webkit-transform: translateZ(1em);
+      transform: translateZ(1em);
+       background: var(--b-front);
+    }
+    .back {
+      -webkit-transform: translateZ(-1em);
+      transform: translateZ(-1em);
+       background: var(--b-back);
+    }
+    .right {
+      -webkit-transform: rotateY(90deg) translateZ(1em);
+      transform: rotateY(90deg) translateZ(1em);
+       background: var(--b-right);
+    }
+    .top {
+      top: -1em;
+      width: 2em;
+      height: 2em;
+      -webkit-transform: rotateX(90deg);
+      transform: rotateX(90deg);
+       background: var(--b-top);
+    }
+    .bottom {
+      top: 1em;
+      width: 2em;
+      height: 2em;
+      -webkit-transform: rotateX(90deg);
+      transform: rotateX(90deg);
+       background: var(--b-bottom);
+    }
+    .css{
+     background-image: linear-gradient(315deg, #63d471 0%, rgb(75,110,88) 74%);
+     background-clip: text;
+     -webkit-background-clip: text;
+     color: transparent;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="mat"></div>
+    <div class="object">
+      <div class="top"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="bottom"></div>
+      <div class="front"><span style="font-size: 3rem" class="css">CSS</span></div>
+      <div class="back"></div>
+    </div>
+  </div>
+</body>
+</html>
