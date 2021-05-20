@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title></title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+  <style type="text/css" media="all">
+  :root{
+    --speed: 1s;
+    --iris-speed: 10s;
+  }
+    * {
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Serif', serif;
+    }
+    body {
+      display: grid;
+      place-content: center;
+      height: 100vh;
+      font-size: 25px;
+      background-image: linear-gradient(transparent  , black);
+      overflow:hidden;
+      padding: 15em 5em;
+      background-repeat: no-repeat;
+      text-align: center;
+    }
+    .eye {
+      width: 13em;
+      height: 13em;
+      background: red;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      background: radial-gradient(circle at 50% 40%, #fcfcfc, #efeff1 66%, #9b5050 100%);
+      position: relative;   
+      z-index: 10;
+      animation:  boing-animation var(--speed) ease infinite , 
+      move-eye var(--speed) infinite ease-in
+      ;
+      overflow: hidden;
+    }
+    .eye:after {
+      content: "";
+      display: block;
+      width: 3.3em;
+      border-radius: 50%;
+      height: 3.3em;
+      top: 17%;
+      left: 20%;
+      transform: skew(-20deg);
+      position: absolute;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8) 14%, rgba(255, 255, 255, 0) 100%);
+      opacity: 0.8;
+    }
+
+    .iris:after {
+      content: "";
+      display: block;
+      width: 1.5em;
+      border-radius: 50%;
+      height: 1.5em;
+      top: 20%;
+      left: 20%;
+      position: absolute;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .iris {
+      width: 5em;
+      height: 5em;
+      background: red;
+      border-radius: 50%;
+      background-image: radial-gradient(circle at 50% 50%,#208ab4 0%, #6fbfff 40%,  #4381b2 100%);
+      display: grid;
+      position: relative;
+      place-content: center;
+      animation: move-eye-skew var(--iris-speed) ease-out infinite;
+    }
+    .pupil {
+      width: 2em;
+      border-radius: 50%;
+      height: 2em;
+      background: black;
+    }
+    .shadow {
+      width: 9em;
+      height: 1em;
+      border-radius: 50%;
+      background: radial-gradient(rgba(0,0,0,0.5) , rgba(0,0,0,0.2) , rgba(0,0,0,0) 100%);
+      opacity: 0.8;
+      left:2em;
+      position: relative;
+      animation:  shadow var(--speed) linear infinite;
+    }
+    
+@keyframes move-eye-skew {
+      0% {
+        transform: none;
+      }
+      20% {
+        transform: translateX(-3em) translateY(2em) skewX(15deg) skewY(-10deg) scale(0.95);
+      }
+      25%, 44% {
+        transform: none;
+      }
+      50%, 60% {
+        transform: translateX(3em) translateY(-2em) skewX(5deg) skewY(2deg) scaleX(0.95);
+      }
+      66%, 100% {
+        transform: none;
+      }
+    }
+    
+@keyframes boing-animation {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scaleY(0.95) scaleX(1.05);
+  }
+  48% {
+    transform: scaleY(1.1) scaleX(0.9);
+  }
+  97%, 100% {
+    transform: scale(1);
+  }
+} 
+
+@keyframes move-eye{
+  0% , 100%{
+   top: 0.5em;
+  }
+  50%{
+    top: -3em;
+  }
+}
+@keyframes shadow {
+  0% , 100% {
+    transform : scale(1);
+  }
+  50%{
+    transform:  scale(0.5);
+     animation-timing-function: ease-in;
+  }
+}
+.text{
+  transform: translateY(-5em);
+  color:#2b2a41;
+}
+
+@media screen and (max-height: 499px){
+ body{
+  font-size: 20px;
+ }
+}
+@media screen and (min-height: 799px){
+ body{
+  font-size: 40px;
+ }
+}
+@media screen and (min-width: 799px){
+ body{
+  font-size: 32px;
+ }
+}
+
+@media screen and (max-width:340px){
+ body{
+  font-size: 13.5px;
+ }
+}
+
+  </style>
+</head>
+<body>
+  <div class="text">
+  What are you looking for ? 
+  </div>
+  <div class="eye">
+    <div class="iris">
+      <div class="pupil">
+      </div>
+    </div>
+  </div>
+  <div class="shadow"></div>
+</body>
+</html>
